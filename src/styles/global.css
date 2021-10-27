@@ -8,6 +8,13 @@ html {
   font-size: 90%;
 }
 
+h1,
+h2,
+h4,
+p {
+  font-family: "Poppins", sans-serif;
+}
+
 :root {
   --background: #2c4557;
   --white: #fff;
@@ -22,6 +29,24 @@ body {
 button {
   border: 0;
   cursor: pointer;
+  font-size: 3.5rem;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: #b3afb3;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b3afb3;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: inset 0px 0px 0px 0px #f0f0f0;
 }
 
 @media (min-width: 500px) {

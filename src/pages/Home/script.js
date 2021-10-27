@@ -5,16 +5,25 @@ const concludedUl = document.querySelector(".concluded");
 
 function listItemCreate(status) {
   const li = document.createElement("li");
-  const responsible = document.createTextNode(
-    `Responsável - ${status.responsible}`
-  );
-  const priority = document.createTextNode(`Prioridade - ${status.priority}`);
+
+  const h4 = document.createElement("h4");
+  const title = document.createTextNode(status.title);
+  h4.classList.add("title-card");
+  h4.appendChild(title);
+
+  const p = document.createElement("p");
+  const description = document.createTextNode(status.description);
+  const div = document.createElement("div");
+  p.classList.add("description-card");
+  p.appendChild(description);
+  div.classList.add("description-content-card");
+  div.appendChild(p);
 
   li.classList.add("card");
   li.setAttribute("draggable", true);
 
-  li.appendChild(responsible);
-  li.appendChild(priority);
+  li.appendChild(h4);
+  li.appendChild(div);
 
   return li;
 }

@@ -1,13 +1,13 @@
 h1,
 p,
-h2 {
-  font-family: "Poppins", sans-serif;
+h2,
+h4 {
   color: var(--white);
 }
 
 h1 {
   font-weight: 500;
-  font-size: 2.5rem;
+  font-size: 4rem;
   cursor: pointer;
 }
 
@@ -17,32 +17,6 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-}
-
-div.avatars {
-  display: flex;
-}
-
-div.avatar {
-  border-radius: 50%;
-  background: green;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-}
-
-button.avatar-add {
-  margin-left: -5px;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  border: none;
-  line-height: 50%;
-}
-
-div.avatar p {
-  color: var(--white);
-  line-height: 30px;
 }
 
 nav {
@@ -76,16 +50,45 @@ header div button.btn {
   min-width: 282px;
   min-height: 200px;
   list-style: none;
+  max-height: 600px;
+  overflow-y: hidden;
+}
+
+.dropzone:hover {
+  overflow-y: auto;
 }
 
 .card {
   background: var(--blue-800);
   padding: 16px;
-  width: 250px;
+  width: 100%;
+  min-width: 250px;
   margin: 25px 0;
   border-radius: 4px;
   font-weight: 600;
   font-size: 18px;
+}
+
+.title-card {
+  margin-bottom: 0.75rem;
+  font-size: 2rem;
+  color: var(--white);
+  font-weight: bold;
+}
+
+.description-card {
+  font-size: 1.5rem;
+  color: var(--white);
+  font-weight: normal;
+}
+
+.description-content-card {
+  max-height: calc(304px - 35px);
+  overflow-y: hidden;
+}
+
+.description-content-card:hover {
+  overflow-y: auto;
 }
 
 .highlight {
