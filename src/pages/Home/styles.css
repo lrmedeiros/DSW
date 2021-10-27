@@ -1,0 +1,107 @@
+h1,
+p,
+h2 {
+  font-family: "Poppins", sans-serif;
+  color: var(--white);
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+div.avatars {
+  display: flex;
+}
+
+div.avatar {
+  border-radius: 50%;
+  background: green;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+
+button.avatar-add {
+  margin-left: -5px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  border: none;
+  line-height: 50%;
+}
+
+div.avatar p {
+  color: var(--white);
+  line-height: 30px;
+}
+
+nav {
+  display: grid;
+  margin: 2rem 3rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  position: relative;
+}
+
+nav section:not(:first-child):after {
+  content: "";
+  position: absolute;
+  background: var(--white);
+  top: 4rem;
+  height: 70vh !important;
+  border-radius: 1px;
+  width: 2px;
+}
+
+header div button.btn {
+  border: none;
+  background: none;
+  color: var(--white);
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.dropzone {
+  padding: 16px;
+  min-width: 282px;
+  min-height: 200px;
+  list-style: none;
+}
+
+.card {
+  background: var(--blue-800);
+  padding: 16px;
+  width: 250px;
+  margin: 25px 0;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.highlight {
+  background-color: #fd951f08;
+}
+
+.is-dragging {
+  cursor: move;
+  opacity: 0.3;
+}
+
+.card,
+.dropzone {
+  transition: 400ms;
+}
+
+.over {
+  background-color: #4cd13711;
+}

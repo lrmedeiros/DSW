@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../styles/global.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Organizei | Home</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Organizei ⋮</h1>
+      </div>
+      <div class="avatars">
+        <div class="avatar">
+          <p>H</p>
+        </div>
+        <button class="avatar-add">+</button>
+      </div>
+    </header>
+    <nav>
+      <section>
+        <header>
+          <h2>Pendente</h2>
+          <div>
+            <button class="btn">⋮</button>
+            <button class="btn">+</button>
+          </div>
+        </header>
+        <ul class="dropzone pending">
+          <li draggable="true" class="card">alo quem</li>
+        </ul>
+      </section>
+      <section>
+        <header>
+          <h2>Hoje</h2>
+          <div>
+            <button class="btn">⋮</button>
+            <button class="btn">+</button>
+          </div>
+        </header>
+        <ul class="dropzone now">
+          <li draggable="true" class="card">quem é</li>
+        </ul>
+      </section>
+      <section>
+        <header>
+          <h2>Executando</h2>
+          <div>
+            <button class="btn">⋮</button>
+            <button class="btn">+</button>
+          </div>
+        </header>
+        <ul class="dropzone running">
+          <li draggable="true" class="card">Porra</li>
+        </ul>
+      </section>
+      <section>
+        <header>
+          <h2>Concluído</h2>
+          <div>
+            <button class="btn">⋮</button>
+            <button class="btn">+</button>
+          </div>
+        </header>
+        <ul class="dropzone concluded">
+          <li draggable="true" class="card">Taligads</li>
+        </ul>
+      </section>
+    </nav>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>

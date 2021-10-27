@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 90%;
+}
+
+:root {
+  --background: #2c4557;
+  --white: #fff;
+  --blue-450: #5785a6;
+  --blue-800: #273845;
+}
+
+body {
+  background: var(--background);
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+@media (min-width: 500px) {
+  html {
+    font-size: 60%;
+  }
+}
+
+@media (min-width: 700px) {
+  html {
+    font-size: 72.5%;
+  }
+}
