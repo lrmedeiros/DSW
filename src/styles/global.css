@@ -11,8 +11,13 @@ html {
 h1,
 h2,
 h4,
-p {
+p,
+a {
   font-family: "Poppins", sans-serif;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 :root {
