@@ -31,6 +31,7 @@ function listItemCreate(status) {
 async function populateProjectManagement() {
   const response = await fetch("http://localhost:3333/projectManagement");
   const data = await response.json();
+  console.log(data);
 
   const { pendings, nows, runnings, concludeds } = data;
 

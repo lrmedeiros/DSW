@@ -11,6 +11,7 @@ body {
 
 input {
   background: var(--background) !important;
+  color: #fff !important;
 }
 
 .container {

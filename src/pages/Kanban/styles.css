@@ -37,7 +37,7 @@ nav section:not(:first-child):after {
   width: 2px;
 }
 
-header div button.btn {
+header div button.btn-out {
   border: none;
   background: none;
   color: var(--white);
@@ -113,4 +113,29 @@ header div button.btn {
   font-size: 24px;
   color: white;
   text-decoration: none;
+}
+
+.modal-content {
+  background: #212531;
+  color: white !important;
+}
+
+.modal-content h5 {
+  font-size: 2rem;
+}
+
+.modal-content label {
+  font-size: 1.8rem;
+}
+
+.modal-content input {
+  background: transparent !important;
+  color: white !important;
+  font-size: 1.6rem;
+}
+
+.modal-content textarea {
+  background: transparent !important;
+  color: white !important;
+  font-size: 1.6rem;
 }
