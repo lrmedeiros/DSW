@@ -1,0 +1,9 @@
+{
+  "name": "organizei/mvc",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Database\\": "app/database/"
+    }
+  }
+}
