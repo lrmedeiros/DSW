@@ -12,15 +12,13 @@ class UserModel{
 
   public $password;
 
-  
-
-  // public function register(){
-  //   $this->id = (new Database('users'))->insert([
-  //     'email' => $this->email,
-  //     'password' => $this->password
-  //   ]);
-  //   return true;
-  // }
+  public function register(){
+    $this->id = (new Database('users'))->insert([
+      'email' => $this->email,
+      'password' => $this->password
+    ]);
+    return true;
+  }
 
   
 }

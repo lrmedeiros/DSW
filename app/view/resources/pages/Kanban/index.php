@@ -46,19 +46,19 @@
   </head>
   <body>
   <header class="row align-items-center" >
-    <div class="col-8">
+    <div class="col-10">
       <div class="row align-items-center justify-content-start">
-        <div class="col-3">
+        <div class="col-7">
           <h1>Organizei</h1>
         </div>
-        <div class="col-4">
-          <a id="sub-route" aria-label="Sobre nós" href="http://localhost/organizei/sobre">Sobre nós</a>
+        <div class="col-5">
+          <a id="sub-route" aria-label="Sobre nós" href="http://localhost/sobre">Sobre nós</a>
         </div>
       </div>
     </div>
-    <!-- <div class="col-4 justify-content-end logout-container">
-      <a class="logout" href="http://localhost/organizei/">Sair</a>
-    </div> -->
+    <div class="col-2 justify-content-end logout-container">
+      <a class="logout" href="http://localhost/">Sair</a>
+    </div>
   </header>
     <nav>
       <section>

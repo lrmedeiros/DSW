@@ -37,22 +37,22 @@ class Response{
     
     http_response_code($this->httpCode);
 
-    if(!headers_sent()) {
-      foreach($this->headers as $key=>$value){
-        header($key.':'.$value);
-      }
-    }
+    // if(!headers_sent()) {
+    //   foreach($this->headers as $key=>$value){
+    //     header($key.':'.$value);
+    //   }
+    // }
   }
 
   public function sendResponse(){
     $this->sendHeaders();
     switch ($this->contentType) {
       case 'text/html':
-        echo $this->content;
+        // echo $this->content;
         exit;
       
       case 'application/json':
-        echo json_encode($this->content);  
+        // echo json_encode($this->content);  
         exit;
       default:
         break;  

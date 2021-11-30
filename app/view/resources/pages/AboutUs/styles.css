@@ -103,7 +103,7 @@ header div button.btn-out {
   background-color: #4cd13711;
 }
 
-.logout {
+#logout {
   font-size: 24px;
   color: white;
   text-decoration: none;

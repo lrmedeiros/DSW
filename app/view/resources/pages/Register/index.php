@@ -30,7 +30,7 @@
   </head>
   <body>
     <header class="header">
-      <h1><a aria-label="Home" href="/organizei">Organizei</a></h1>
+      <h1><a aria-label="Home" href="/">Organizei</a></h1>
     </header>
     <main class="container">
       <header class="mb-3 row">
@@ -57,6 +57,11 @@
             Criar Conta
           </button>
         </div>
+        <div class="mb-3 row">
+        <button type="button" class="btn btn-secondary">
+          <a id="register" href="/"> Voltar </a>
+        </button>
+      </div>
       </form>
     </main>
     <script src="./script.js" defer></script>

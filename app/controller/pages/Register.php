@@ -9,24 +9,18 @@ use \App\Utils\View;
 class Register{
   public static function getRegister(){
     $content = View::render('/Register/index');
-    #
+  
     return $content;
   }
 
   public static function insertNewAccount($request){
     $postVars = $request->getPostVars();
-    
 
     $userDAO = new UserDAO();
-    // $obUser = new UserModel();
-    // $obUser->email = $postVars['email'];
-    // $obUser->password = password_hash($postVars['password'],PASSWORD_DEFAULT);
-    // $obUser->register();
     $userDAO->insertUser($postVars['email'], $postVars['password']);
-    if($userDAO == true){
-      echo('será???');
-      exit;
-    }
-    return self::getRegister($request);
+
+    $content = View::render('/Home/index');
+    
+    return Pages\Login::getLogin();
   }
 }

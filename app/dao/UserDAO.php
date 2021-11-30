@@ -33,7 +33,7 @@ class UserDAO{
     $obUser = new UserModel();
 
     $obUser->email = $email;
-    $obUser->password = password_hash($password, PASSWORD_DEFAULT);
+    $obUser->password = crypt($password, '$2a$07$usesomesillystringforsalt$');
     $query = $this->connection->getConnection()->prepare("INSERT INTO users (email, password) VALUES (:email,:password)");
     $query->execute(array(
       ':email' => "$obUser->email",
@@ -51,8 +51,6 @@ class UserDAO{
      'email' => $obUser->email 
     ]);
     return $query->fetchObject(self::class);
-    // $user = (new Database('users'))->select('email = "'.$email.'"')->fetchObject(self::class);
-    // return $user;
   }
   
 }

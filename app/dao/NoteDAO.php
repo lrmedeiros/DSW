@@ -28,19 +28,22 @@ class NoteDAO {
     
   }
 
-  public function insertNote($title,$description,$status){
+  public function insertNote($title,$description,$status, $userId){
 
     $obNote = new NoteModel();
 
     $obNote->title = $title;
     $obNote->description = $description;
     $obNote->status = $status;
-    $query = $this->connection->getConnection()->prepare("INSERT INTO notes (title, description, status) VALUES (:title, :description, :status)");
+    $obNote->userId = $userId;
+
+    $query = $this->connection->getConnection()->prepare("INSERT INTO notes (title, description, status, userId) VALUES (:title, :description, :status, :userId)");
     
     return $query->execute(array(
       ':title' => "$obNote->title",
       ':description' => "$obNote->description",
-      ':status' => "$obNote->status"
+      ':status' => "$obNote->status",
+      ':userId' => "$obNote->userId"
     ));
   }
 
@@ -56,11 +59,16 @@ class NoteDAO {
     ]);
   }
 
-  public function getAllNotes(){
-    $query = $this->connection->getConnection()->prepare("SELECT * FROM notes");
-    $query->execute();
+  public function getAllNotes($userId){
+    $query = $this->connection->getConnection()->prepare("SELECT * FROM notes WHERE userId = :userId");
+
+    $query->execute([
+      'userId' => $userId
+    ]);
     
-    return $query->fetchAll($this->connection->getConnection()::FETCH_ASSOC);
+    $value = $query->fetchAll($this->connection->getConnection()::FETCH_ASSOC);
+
+    return json_encode($value);
   }
 
   public function deleteNote($id){

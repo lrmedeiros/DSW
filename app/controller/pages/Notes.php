@@ -8,8 +8,14 @@ use App\DAO\NoteDAO;
 class Notes{
   public static function getNotes($request){
     $noteDAO = new NoteDAO();
+    $jsonRequest = file_get_contents('php://input');
+    $decodedData = json_decode($jsonRequest);
 
-    return $noteDAO->getAllNotes();
+    $value = $noteDAO->getAllNotes($decodedData->userId);
+
+    echo($value);
+
+    return $value;
   }
 
   public static function insertNote($request){
@@ -18,7 +24,11 @@ class Notes{
     
     $noteDAO = new NoteDAO();
 
-    return $noteDAO->insertNote($decodedData->title,$decodedData->description,$decodedData->section);
+    $id = $decodedData->description;
+
+    echo($id);
+
+    return $noteDAO->insertNote($decodedData->title,$decodedData->description,$decodedData->section, $decodedData->userId);
   }
 
   public static function updateNotes($request){

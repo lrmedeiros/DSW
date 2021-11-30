@@ -53,3 +53,8 @@ header.header {
   justify-content: space-between;
   padding: 20px;
 }
+
+#register {
+  text-decoration: none;
+  color: white;
+}

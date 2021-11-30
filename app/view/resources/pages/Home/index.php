@@ -37,7 +37,7 @@
       </div>
       <div class="mb-3 row">
         <button type="button" class="btn btn-secondary">
-          <a id="register" href="http://localhost/organizei/register"> Criar Conta </a>
+          <a id="register" href="http://localhost/register"> Criar Conta </a>
         </button>
       </div>
     </form>

@@ -5,11 +5,11 @@ namespace App\Controller\Pages;
 use App\DAO\UserDAO;
 use App\Model\UserModel;
 use \App\Utils\View;
+use App\Controller\Pages;
 
-error_reporting(0);
+
 class Login{
-  public static function getLogin($request,$error = false){
-    
+  public static function getLogin($request,$error = false) {
     $status = $error == true ? View::render('/Home/status') : '';
   
     $content = View::render('/Home/index',[
@@ -26,8 +26,18 @@ class Login{
     
     $userDao = new UserDAO();
     $obUser = $userDao->getUserToAuthenticate($email);
-    if(!$obUser instanceof UserModel || !password_verify($password, $obUser->password)){
-      return self::getLogin($request,true);
-    }
+    $userPassword = $obUser -> password;
+    $userId = $obUser -> id;
+
+    $correct = crypt($password, '$2a$07$usesomesillystringforsalt$');
+
+   if (hash_equals($userPassword, $correct)) {
+     echo "<script defer>document.write(localStorage.setItem('userId', '".$userId."'))</script>";
+     return Pages\Kanban::getKanban();
+   }
+
+   echo '<script>alert("E-mail ou senha inválido")</script>';
+
+    return self::getLogin($request);
   }
 }

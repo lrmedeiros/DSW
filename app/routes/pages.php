@@ -4,37 +4,37 @@ use App\Controller\Pages;
 use App\Http\Response;
 
 
-// $obRouter->get('/',[
-//   function($request){
-//     return new Response(200,Pages\Login::getLogin($request), [
-//       'status' => ''
-//     ]);
-//   }
-// ]);
-
-// $obRouter->post('/',[
-//   function($request){
-//     return new Response(200,Pages\Login::setLogin($request));
-//   }
-// ]);
-
 $obRouter->get('/',[
+  function($request){
+    return new Response(200,Pages\Login::getLogin($request), [
+      'status' => ''
+    ]);
+  }
+]);
+
+$obRouter->post('/',[
+  function($request){
+    return new Response(200,Pages\Login::setLogin($request));
+  }
+]);
+
+$obRouter->get('/kanban',[
   function(){
     return new Response(200,Pages\Kanban::getKanban());
   }
 ]);
 
-// $obRouter->get('/register',[
-//   function(){
-//     return new Response(200,Pages\Register::getRegister());
-//   }
-// ]);
+$obRouter->get('/register',[
+  function(){
+    return new Response(200,Pages\Register::getRegister());
+  }
+]);
 
-// $obRouter->post('/register',[
-//   function($request){
-//     return new Response(200,Pages\Register::insertNewAccount($request));
-//   }
-// ]);
+$obRouter->post('/register',[
+  function($request){
+    return new Response(200,Pages\Register::insertNewAccount($request));
+  }
+]);
 
 $obRouter->get('/sobre',[
   function(){
@@ -42,7 +42,7 @@ $obRouter->get('/sobre',[
   }
 ]);
 
-$obRouter->get('/notes',[
+$obRouter->post('/notes/list',[
   function($request){
     return new Response(200,Pages\Notes::getNotes($request),'application/json');
   }

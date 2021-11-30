@@ -12,7 +12,7 @@ function listItemCreate(data) {
 
   h4.classList.add("title-card");
   h4.appendChild(title);
-  
+
   const divHeader = document.createElement("div");
   const buttonLixeira = document.createElement("button");
   const buttonEdit = document.createElement("button");
@@ -27,7 +27,6 @@ function listItemCreate(data) {
   divHeader.appendChild(h4);
   divHeader.appendChild(buttonLixeira);
 
-  
   const p = document.createElement("p");
   const description = document.createTextNode(data.description);
   const div = document.createElement("div");
@@ -46,9 +45,35 @@ function listItemCreate(data) {
   return li;
 }
 
+function removePhpText() {
+  let tags = document.getElementsByTagName("text");
+  console.log(tags.length);
+
+  for (let index = 0; index < tags.length; index++) {
+    tags[index].parentNode.removeChild(tags[index]);
+  }
+}
+
 async function populateProjectManagement() {
-  const response = await fetch("http://localhost:80/organizei/notes");
+  const userId = localStorage.getItem("userId");
+  console.log(userId);
+  if (!userId) {
+    window.location.replace("http://localhost/");
+  }
+  const response = await fetch("http://localhost:80/notes/list", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId,
+    }),
+  });
   const dataArray = await response.json();
+  console.log("aqui");
+  removePhpText();
+
   dataArray.forEach((data) => {
     if (data.status === "CONCLUDED") {
       const li = listItemCreate(data);
@@ -134,11 +159,10 @@ function drop() {
 
 async function updateBackendCards(card, dropzone) {
   const id = Number(card.id);
-  
+
   const [, dropzoneName] = dropzone.classList;
 
-  
-  await fetch("http://localhost:80/organizei/notes", {
+  await fetch("http://localhost:80/notes", {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -149,7 +173,7 @@ async function updateBackendCards(card, dropzone) {
       id,
     }),
   });
-  window.location.reload(true)
+  window.location.reload(true);
 }
 
 function filterChildNodeWithOneClass(node, className) {
@@ -184,11 +208,12 @@ function createNewCard(section) {
   saveButton.addEventListener("click", async () => {
     const titleInput = document.querySelector("#title");
     const descriptionInput = document.querySelector("#description");
+    const userId = localStorage.getItem("userId");
 
     const title = titleInput.value;
     const description = descriptionInput.value;
 
-    await fetch(`http://localhost:80/organizei/notes`, {
+    await fetch(`http://localhost:80/notes`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -198,12 +223,12 @@ function createNewCard(section) {
         section,
         title,
         description,
+        userId,
       }),
     });
     window.location.reload(true);
   });
 }
-
 
 let buttonsDelete = document.querySelectorAll(".delete");
 
@@ -211,7 +236,7 @@ function deleteCard() {
   buttonsDelete.forEach((button) => {
     button.addEventListener("click", async () => {
       const id = button.getAttribute("id");
-      await fetch(`http://localhost:80/organizei/notes`, {
+      await fetch(`http://localhost:80/notes`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
@@ -223,5 +248,3 @@ function deleteCard() {
     });
   });
 }
-
-
