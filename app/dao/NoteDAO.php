@@ -28,23 +28,21 @@ class NoteDAO {
     
   }
 
-  public function insertNote($title,$description,$status,$userId){
+  public function insertNote($title,$description,$status){
 
     $obNote = new NoteModel();
 
     $obNote->title = $title;
     $obNote->description = $description;
     $obNote->status = $status;
-    $obNote->userId = $userId;
-    $query = $this->connection->getConnection()->prepare("INSERT INTO notes (title, description, status, userId) VALUES (:title, :description, :status, :userId)");
-    $query->execute(array(
+    $query = $this->connection->getConnection()->prepare("INSERT INTO notes (title, description, status) VALUES (:title, :description, :status)");
+    
+    
+    return $query->execute(array(
       ':title' => "$obNote->title",
       ':description' => "$obNote->description",
-      ':status' => "$obNote->status",
-      ':userId' => "$obNote->userId"
+      ':status' => "$obNote->status"
     ));
-    
-    return true;
   }
 
   public function updateNote($id,$status){

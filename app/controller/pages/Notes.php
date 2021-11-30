@@ -11,7 +11,17 @@ class Notes{
   public static function getNotes($request){
     $noteDAO = new NoteDAO();
     $allNotes = $noteDAO->getAllNotes();
+    
     return $allNotes;   
+  }
+
+  public static function insertNote($request){
+    $jsonRequest = file_get_contents('php://input');
+    $decodedData = json_decode($jsonRequest);
+    
+    $noteDAO = new NoteDAO();
+
+    return $noteDAO->insertNote($decodedData->title,$decodedData->description,$decodedData->section);
   }
 
   public static function updateNotes($request){
@@ -19,8 +29,6 @@ class Notes{
     $decodedData = json_decode($jsonRequest);
     $noteDAO = new NoteDAO();
     $updateNote = $noteDAO->updateNote($decodedData->id,$decodedData->dropzoneName);
-    print_r($updateNote);
-    exit;
     return $updateNote; 
   }
 

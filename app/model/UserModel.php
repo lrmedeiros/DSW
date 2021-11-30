@@ -22,8 +22,5 @@ class UserModel{
   //   return true;
   // }
 
-  // public function getUserToAuthenticate($email){
-  //   $user = (new Database('users'))->select('email = "'.$email.'"')->fetchObject(self::class);
-  //   return $user;
-  // }
+  
 }

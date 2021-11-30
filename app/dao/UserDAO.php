@@ -43,5 +43,16 @@ class UserDAO{
     return true;
   }
 
+  public function getUserToAuthenticate($email){
+    $obUser = new UserModel();
+    $obUser->email = $email;
+    $query = $this->connection->getConnection()->prepare("SELECT * FROM users WHERE email = :email");
+    $query->execute([
+     'email' => $obUser->email 
+    ]);
+    return $query->fetchObject(self::class);
+    // $user = (new Database('users'))->select('email = "'.$email.'"')->fetchObject(self::class);
+    // return $user;
+  }
   
 }

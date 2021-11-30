@@ -5,15 +5,15 @@ const concludedUl = document.querySelector(".concluded");
 
 function listItemCreate(data) {
   const li = document.createElement("li");
-  li.setAttribute("id", data.ID);
+  li.setAttribute("id", data.id);
 
   const h4 = document.createElement("h4");
-  const title = document.createTextNode(data.TITLE);
+  const title = document.createTextNode(data.title);
   h4.classList.add("title-card");
   h4.appendChild(title);
 
   const p = document.createElement("p");
-  const description = document.createTextNode(data.DESCRIPTION);
+  const description = document.createTextNode(data.description);
   const div = document.createElement("div");
   p.classList.add("description-card");
   p.appendChild(description);
@@ -32,21 +32,22 @@ function listItemCreate(data) {
 async function populateProjectManagement() {
   const response = await fetch("http://localhost:80/organizei/notes");
   const dataArray = await response.json();
+  console.log(dataArray)
   dataArray.forEach((data) => {
  
-    if(data.STATUS === 'CONCLUDED'){
+    if(data.status === 'CONCLUDED'){
       const li = listItemCreate(data);
       concludedUl.appendChild(li);
     }
-    if(data.STATUS === 'NOWS'){
+    if(data.status === 'NOWS'){
       const li = listItemCreate(data);
       nowUl.appendChild(li);
     }
-    if(data.STATUS === 'PENDINGS'){
+    if(data.status === 'PENDINGS'){
       const li = listItemCreate(data);
       pendingUl.appendChild(li);
     }
-    if(data.STATUS === 'RUNNINGS'){
+    if(data.status === 'RUNNINGS'){
       const li = listItemCreate(data);
       runningUl.appendChild(li);
     }
@@ -171,31 +172,31 @@ async function updateBackendCards(card, dropzone) {
 
   dataFetched.forEach((data) => {
  
-    if(data.STATUS === 'CONCLUDED'){
+    if(data.status === 'CONCLUDED'){
       objecttest.concluded.push(data);
     }
-    if(data.STATUS === 'NOWS'){
+    if(data.status === 'NOWS'){
       objecttest.nows.push(data);
     }
-    if(data.STATUS === 'PENDINGS'){
+    if(data.status === 'PENDINGS'){
       objecttest.pendings.push(data)
     }
-    if(data.STATUS === 'RUNNINGS'){
+    if(data.status === 'RUNNINGS'){
       objecttest.runnings.push(data)
     }
   })
   
   const pendingsFiltered = objecttest.pendings.filter((pending) => {
-    return Number(pending.ID) !== id;
+    return Number(pending.id) !== id;
   });
   const nowsFiltered = objecttest.nows.filter((now) => {
-    return Number(now.ID) !== id;
+    return Number(now.id) !== id;
   });
   const runningsFiltered = objecttest.runnings.filter((running) => {
-    return Number(running.ID) !== id;
+    return Number(running.id) !== id;
   });
   const concludedsFiltered = objecttest.concluded.filter((concluded) => {
-    return Number(concluded.ID) !== id;
+    return Number(concluded.id) !== id;
   });
 
   const dataWithOutDuplicates = {
@@ -210,13 +211,13 @@ async function updateBackendCards(card, dropzone) {
   let dropzoneAreaFiltered = [];
 
   for (dropzone of dropzoneArea) {
-    if (Number(dropzone.ID) !== id) {
+    if (Number(dropzone.id) !== id) {
       dropzoneAreaFiltered.push(dropzone);
     }
   }
-  console.log("dataWithOutDuplicates ="+"\n",dataWithOutDuplicates,"dropzoneName ="+"\n", [dropzoneName],"\n"+"dropzoneAreaFiltered ="+"\n",[...dropzoneAreaFiltered, { id, title, description }] );
+  
   await fetch("http://localhost:80/organizei/notes", {
-    method: "post",
+    method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -265,13 +266,18 @@ function createNewCard(section) {
     const title = titleInput.value;
     const description = descriptionInput.value;
 
-    await fetch(`http://localhost:3333/projectManagement/${section}`, {
+    await fetch(`http://localhost:80/organizei/notes`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, description }),
+      body: JSON.stringify({
+        section,
+        title, 
+        description 
+      }),
     });
+    window.location.reload(true);
   });
 }

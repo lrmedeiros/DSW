@@ -45,7 +45,12 @@ $obRouter->get('/notes',[
 
 $obRouter->post('/notes',[
   function($request){
-    
+    return new Response(200,Pages\Notes::insertNote($request),'application/json');
+  }
+]);
+
+$obRouter->put('/notes',[
+  function($request){
     return new Response(200,Pages\Notes::updateNotes($request),'application/json');
   }
 ]);

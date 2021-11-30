@@ -2,6 +2,7 @@
 
 namespace App\Controller\Pages;
 
+use App\DAO\UserDAO;
 use App\Model\UserModel;
 use \App\Utils\View;
 
@@ -18,13 +19,14 @@ class Login{
   }
 
   public static function setLogin($request){
-    $postVars = $request-> getPoastVars();
+    $postVars = $request-> getPostVars();
     $email = $postVars['email'] ?? '';
     $password= $postVars['password'] ?? '';
     
-    // $obUser = UserModel::getUserToAuthenticate($email);
-    // if(!$obUser instanceof UserModel || !password_verify($password, $obUser->password)){
-    //   return self::getLogin($request,true);
-    // }
+    $userDao = new UserDAO();
+    $obUser = $userDao->getUserToAuthenticate($email);
+    if(!$obUser instanceof UserModel || !password_verify($password, $obUser->password)){
+      return self::getLogin($request,true);
+    }
   }
 }
