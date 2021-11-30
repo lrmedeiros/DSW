@@ -144,3 +144,10 @@ header div button.btn-out {
   color: white !important;
   font-size: 1.6rem;
 }
+
+div.div-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}

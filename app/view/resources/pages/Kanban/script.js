@@ -11,6 +11,17 @@ function listItemCreate(data) {
   const title = document.createTextNode(data.title);
   h4.classList.add("title-card");
   h4.appendChild(title);
+  const divHeader = document.createElement("div");
+  const buttonLixeira = document.createElement("button");
+  buttonLixeira.setAttribute("id", data.id);
+  buttonLixeira.classList.add("btn");
+  buttonLixeira.classList.add("btn-primary");
+  buttonLixeira.classList.add("delete");
+  const buttonLixeiraText = document.createTextNode("Excluir");
+  buttonLixeira.appendChild(buttonLixeiraText);
+  divHeader.classList.add("div-header");
+  divHeader.appendChild(h4);
+  divHeader.appendChild(buttonLixeira);
 
   const p = document.createElement("p");
   const description = document.createTextNode(data.description);
@@ -23,7 +34,7 @@ function listItemCreate(data) {
   li.classList.add("card");
   li.setAttribute("draggable", true);
 
-  li.appendChild(h4);
+  li.appendChild(divHeader);
   li.appendChild(div);
 
   return li;
@@ -32,26 +43,24 @@ function listItemCreate(data) {
 async function populateProjectManagement() {
   const response = await fetch("http://localhost:80/organizei/notes");
   const dataArray = await response.json();
-  console.log(dataArray)
   dataArray.forEach((data) => {
- 
-    if(data.status === 'CONCLUDED'){
+    if (data.status === "CONCLUDED") {
       const li = listItemCreate(data);
       concludedUl.appendChild(li);
     }
-    if(data.status === 'NOWS'){
+    if (data.status === "NOWS") {
       const li = listItemCreate(data);
       nowUl.appendChild(li);
     }
-    if(data.status === 'PENDINGS'){
+    if (data.status === "PENDINGS") {
       const li = listItemCreate(data);
       pendingUl.appendChild(li);
     }
-    if(data.status === 'RUNNINGS'){
+    if (data.status === "RUNNINGS") {
       const li = listItemCreate(data);
       runningUl.appendChild(li);
     }
-  })
+  });
 
   // if (pendings) {
   //   pendings.forEach((pending) => {
@@ -87,10 +96,13 @@ document.addEventListener("DOMContentLoaded", populateProjectManagement());
 
 function updateCards() {
   cards = document.querySelectorAll(".card");
+  buttonsDelete = document.querySelectorAll(".delete");
   cards.forEach((card) => {
     card.addEventListener("dragstart", dragStart);
     card.addEventListener("dragend", dragEnd);
   });
+
+  deleteCard();
 }
 
 let cards = document.querySelectorAll(".card");
@@ -105,7 +117,7 @@ function dragStart() {
   dropzones.forEach((dropzone) => dropzone.classList.add("highlight"));
   this.classList.add("is-dragging");
 }
-  
+
 function dragEnd() {
   dropzones.forEach((dropzone) => dropzone.classList.remove("highlight"));
   this.classList.remove("is-dragging");
@@ -145,7 +157,7 @@ function drop() {
 async function updateBackendCards(card, dropzone) {
   const id = Number(card.id);
   const [titleNode] = filterChildNodeWithOneClass(card, "title-card");
-  const title = titleNode.textContent; 
+  const title = titleNode.textContent;
 
   const [descriptionContentNode] = filterChildNodeWithOneClass(
     card,
@@ -157,35 +169,33 @@ async function updateBackendCards(card, dropzone) {
   );
 
   const description = descriptionNode.textContent;
-  //console.log(title,"\n",description,"\n",id)
   const [, dropzoneName] = dropzone.classList;
 
   const response = await fetch("http://localhost:80/organizei/notes");
   const dataFetched = await response.json();
-  
+
   const objecttest = {
     concluded: [],
     nows: [],
     runnings: [],
-    pendings: []
-  }
+    pendings: [],
+  };
 
   dataFetched.forEach((data) => {
- 
-    if(data.status === 'CONCLUDED'){
+    if (data.status === "CONCLUDED") {
       objecttest.concluded.push(data);
     }
-    if(data.status === 'NOWS'){
+    if (data.status === "NOWS") {
       objecttest.nows.push(data);
     }
-    if(data.status === 'PENDINGS'){
-      objecttest.pendings.push(data)
+    if (data.status === "PENDINGS") {
+      objecttest.pendings.push(data);
     }
-    if(data.status === 'RUNNINGS'){
-      objecttest.runnings.push(data)
+    if (data.status === "RUNNINGS") {
+      objecttest.runnings.push(data);
     }
-  })
-  
+  });
+
   const pendingsFiltered = objecttest.pendings.filter((pending) => {
     return Number(pending.id) !== id;
   });
@@ -207,7 +217,7 @@ async function updateBackendCards(card, dropzone) {
   };
 
   const dropzoneArea = [...objecttest[dropzoneName]];
-  
+
   let dropzoneAreaFiltered = [];
 
   for (dropzone of dropzoneArea) {
@@ -215,7 +225,7 @@ async function updateBackendCards(card, dropzone) {
       dropzoneAreaFiltered.push(dropzone);
     }
   }
-  
+
   await fetch("http://localhost:80/organizei/notes", {
     method: "PUT",
     headers: {
@@ -223,11 +233,10 @@ async function updateBackendCards(card, dropzone) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      dropzoneName, 
+      dropzoneName,
       id,
     }),
   });
-
 }
 
 function filterChildNodeWithOneClass(node, className) {
@@ -274,10 +283,29 @@ function createNewCard(section) {
       },
       body: JSON.stringify({
         section,
-        title, 
-        description 
+        title,
+        description,
       }),
     });
     window.location.reload(true);
+  });
+}
+
+let buttonsDelete = document.querySelectorAll(".delete");
+
+function deleteCard() {
+  buttonsDelete.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const id = button.getAttribute("id");
+      await fetch(`http://localhost:80/organizei/notes`, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+      window.location.reload(true);
+    });
   });
 }
