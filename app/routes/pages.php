@@ -67,14 +67,30 @@ $obRouter->delete('/notes',[
 ]);
 
 
-// $obRouter->post('/depoimentos',[
+// $obRouter->get('/',[
 //   function($request){
-//     return new Response(200,Pages\Testimony::insertTestimony($request));
+//     return new Response(200,Pages\Login::getLogin($request), [
+//       'status' => ''
+//     ]);
 //   }
 // ]);
 
-// $obRouter->get('/pagina/{idPagina}/{acao}',[
-//   function($idPagina,$acao){
-//     return new Response(200,'Página '.$idPagina.' '.$acao);
+// $obRouter->post('/',[
+//   function($request){
+//     return new Response(200,Pages\Login::setLogin($request));
+//   }
+// ]);
+
+
+
+// $obRouter->get('/register',[
+//   function(){
+//     return new Response(200,Pages\Register::getRegister());
+//   }
+// ]);
+
+// $obRouter->post('/register',[
+//   function($request){
+//     return new Response(200,Pages\Register::insertNewAccount($request));
 //   }
 // ]);

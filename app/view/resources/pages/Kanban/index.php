@@ -1,20 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="../../assets/favicon.ico"
-      type="image/x-icon"
-    />
 
     
     <link
@@ -60,155 +45,114 @@
       <a class="logout" href="http://localhost/">Sair</a>
     </div>
   </header>
-    <nav>
-      <section>
-        <header>
-          <h2>Pendente</h2>
-          <div>
-            <button
-              class="btn-out"
-              type="button"
-              data-toggle="modal"
-              data-target="#exampleModal"
-              id="button-pendings"
-            >
-              +
-            </button>
-          </div>
-        </header>
-        <ul class="dropzone pendings">
-          <!-- <li draggable="true" class="card">
+  <nav>
+    <section>
+      <header>
+        <h2>Pendente</h2>
+        <div>
+          <button class="btn-out" type="button" data-toggle="modal" data-target="#exampleModal" id="button-pendings">
+            +
+          </button>
+        </div>
+      </header>
+      <ul class="dropzone pendings">
+        <!-- <li draggable="true" class="card">
             <h4 class="title-card">alo quem</h4>
             <p class="description-card">
               adsjgoaidsjgoadsj sdaiogjadosigjadosij gioadsdsagopads
               adosgkadsopgkdsopag
             </p>
           </li> -->
-        </ul>
-      </section>
-      <section>
-        <header>
-          <h2>Hoje</h2>
-          <div>
-            <button
-              class="btn-out"
-              type="button"
-              data-toggle="modal"
-              data-target="#exampleModal"
-              id="button-nows"
-            >
-              +
-            </button>
-          </div>
-        </header>
-        <ul class="dropzone nows">
-          
-        </ul>
-      </section>
-      <section>
-        <header>
-          <h2>Executando</h2>
-          <div>
-            <button
-              class="btn-out"
-              type="button"
-              data-toggle="modal"
-              data-target="#exampleModal"
-              id="button-runnings"
-            >
-              +
-            </button>
-          </div>
-        </header>
-        <ul class="dropzone runnings">
-          <!-- <li draggable="true" class="card">
+      </ul>
+    </section>
+    <section>
+      <header>
+        <h2>Hoje</h2>
+        <div>
+          <button class="btn-out" type="button" data-toggle="modal" data-target="#exampleModal" id="button-nows">
+            +
+          </button>
+        </div>
+      </header>
+      <ul class="dropzone nows">
+
+      </ul>
+    </section>
+    <section>
+      <header>
+        <h2>Executando</h2>
+        <div>
+          <button class="btn-out" type="button" data-toggle="modal" data-target="#exampleModal" id="button-runnings">
+            +
+          </button>
+        </div>
+      </header>
+      <ul class="dropzone runnings">
+        <!-- <li draggable="true" class="card">
             <h4 class="title-card">ixi</h4>
             <p class="description-card">
               adsjgoaidsjgoadsj sdaiogjadosigjadosij gioadsdsagopads
               adosgkadsopgkdsopag
             </p>
           </li> -->
-        </ul>
-      </section>
-      <section>
-        <header>
-          <h2>Concluído</h2>
-          <div>
-            <button
-              class="btn-out"
-              type="button"
-              data-toggle="modal"
-              data-target="#exampleModal"
-              id="button-concluded"
-            >
-              +
-            </button>
-          </div>
-        </header>
-        <ul class="dropzone concluded">
-          <!-- <li draggable="true" class="card">
+      </ul>
+    </section>
+    <section>
+      <header>
+        <h2>Concluído</h2>
+        <div>
+          <button class="btn-out" type="button" data-toggle="modal" data-target="#exampleModal" id="button-concluded">
+            +
+          </button>
+        </div>
+      </header>
+      <ul class="dropzone concluded">
+        <!-- <li draggable="true" class="card">
             <h4 class="title-card">uhu</h4>
             <p class="description-card">
               adsjgoaidsjgoadsj sdaiogjadosigjadosij gioadsdsagopads
               adosgkadsopgkdsopag
             </p>
           </li> -->
-        </ul>
-      </section>
-    </nav>
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Nova atividade</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form class="container">
-              <div class="mb-4 row">
-                <label for="title" class="form-label">Título</label>
-                <input class="form-control" id="title" required />
-              </div>
-              <div class="mb-4 row">
-                <label for="description" class="form-label">Descrição</label>
-                <textarea
-                  class="form-control"
-                  id="description"
-                  required
-                ></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Fechar
-            </button>
-            <button type="button" id="save-button" class="btn btn-primary">
-              Salvar
-            </button>
-          </div>
+      </ul>
+    </section>
+  </nav>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nova atividade</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="container">
+            <div class="mb-4 row">
+              <label for="title" class="form-label">Título</label>
+              <input class="form-control" id="title" required />
+            </div>
+            <div class="mb-4 row">
+              <label for="description" class="form-label">Descrição</label>
+              <textarea class="form-control" id="description" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Fechar
+          </button>
+          <button type="button" id="save-button" class="btn btn-primary">
+            Salvar
+          </button>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 
-  <script defer><?php include './app/view/resources/pages/Kanban/script.js'; ?></script>
+<script defer>
+  <?php include './app/view/resources/pages/Kanban/script.js'; ?>
+</script>
+
 </html>

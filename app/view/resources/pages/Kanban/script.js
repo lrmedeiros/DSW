@@ -53,6 +53,7 @@ function removePhpText() {
     tags[index].parentNode.removeChild(tags[index]);
   }
 }
+// busca os dados do banco de dados e renderiza os cards
 
 async function populateProjectManagement() {
   const userId = localStorage.getItem("userId");
@@ -97,6 +98,8 @@ async function populateProjectManagement() {
 }
 
 document.addEventListener("DOMContentLoaded", populateProjectManagement());
+
+//update no estado do card
 
 function updateCards() {
   cards = document.querySelectorAll(".card");
@@ -157,6 +160,9 @@ function drop() {
   this.classList.remove("over");
 }
 
+//faz uma requisição na rota /notes com método put e atualiza
+//o card no backend
+
 async function updateBackendCards(card, dropzone) {
   const id = Number(card.id);
 
@@ -203,6 +209,8 @@ buttonConcluded.addEventListener("click", () => {
 buttonRunnings.addEventListener("click", () => {
   createNewCard("runnings");
 });
+
+//cria um novo objeto card
 
 function createNewCard(section) {
   saveButton.addEventListener("click", async () => {
