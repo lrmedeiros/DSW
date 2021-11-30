@@ -46,6 +46,8 @@ function listItemCreate(data) {
   return li;
 }
 
+// busca os dados do banco de dados e renderiza os cards
+
 async function populateProjectManagement() {
   const response = await fetch("http://localhost:80/organizei/notes");
   const dataArray = await response.json();
@@ -73,6 +75,8 @@ async function populateProjectManagement() {
 
 document.addEventListener("DOMContentLoaded", populateProjectManagement());
 
+//update no estado do card
+
 function updateCards() {
   cards = document.querySelectorAll(".card");
   buttonsDelete = document.querySelectorAll(".delete");
@@ -90,6 +94,7 @@ cards.forEach((card) => {
   card.addEventListener("dragstart", dragStart);
   card.addEventListener("dragend", dragEnd);
 });
+
 
 function dragStart() {
   dropzones.forEach((dropzone) => dropzone.classList.add("highlight"));
@@ -131,6 +136,9 @@ function dragLeave() {
 function drop() {
   this.classList.remove("over");
 }
+
+//faz uma requisição na rota /notes com método put e atualiza 
+//o card no backend
 
 async function updateBackendCards(card, dropzone) {
   const id = Number(card.id);
@@ -179,6 +187,8 @@ buttonConcluded.addEventListener("click", () => {
 buttonRunnings.addEventListener("click", () => {
   createNewCard("runnings");
 });
+
+//cria um novo objeto card
 
 function createNewCard(section) {
   saveButton.addEventListener("click", async () => {

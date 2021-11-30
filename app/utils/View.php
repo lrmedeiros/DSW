@@ -13,9 +13,14 @@ class View{
 
   private static function getContentView($view){
     $file = include __DIR__.'/../view/resources/pages'.$view.'.php';
-    #return file_exists($file) ? file_get_contents($file) : 'n existe';
+
     return $file;
   }
+
+  /*
+    Função que renderiza a página pegando as variáveis da request,
+    separando as chaves dos valores e substituindo na string. 
+  */
 
   public static function render($view, $vars = []){
     $contentView = self::getContentView($view);
@@ -25,9 +30,6 @@ class View{
     $keys = array_map(function($item){
       return '{{'.$item.'}}';
     }, $keys);
-    // print_r(array_values($vars)[1]);
-    // print_r(str_replace($keys,array_values($vars)[1],$contentView));
-    // print_r(str_replace($keys,array_values($vars),$contentView));
     
     return str_replace($keys,array_values($vars),$contentView);
   }

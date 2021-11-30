@@ -14,9 +14,4 @@ class NoteModel{
 
   public $status;
 
-
-  // public static function getAllNotes(){
-  //   $notes = (new Database('notes'))->select(null,null,null,'*')->fetchAll();
-  //   return $notes;
-  // }
 }
