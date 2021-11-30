@@ -6,6 +6,7 @@ use App\DAO\UserDAO;
 use App\Model\UserModel;
 use \App\Utils\View;
 
+error_reporting(0);
 class Login{
   public static function getLogin($request,$error = false){
     

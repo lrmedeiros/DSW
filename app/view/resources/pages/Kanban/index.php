@@ -45,14 +45,21 @@
     <title>Organizei | Kanban</title>
   </head>
   <body>
-    <header>
-      <div>
-        <h1><a aria-label="Home" href="/organizei">Organizei</a></h1>
+  <header class="row align-items-center" >
+    <div class="col-8">
+      <div class="row align-items-center justify-content-start">
+        <div class="col-3">
+          <h1>Organizei</h1>
+        </div>
+        <div class="col-4">
+          <a id="sub-route" aria-label="Sobre nós" href="http://localhost/organizei/sobre">Sobre nós</a>
+        </div>
       </div>
-      <div>
-        <a class="logout" href="/">Sair</a>
-      </div>
-    </header>
+    </div>
+    <!-- <div class="col-4 justify-content-end logout-container">
+      <a class="logout" href="http://localhost/organizei/">Sair</a>
+    </div> -->
+  </header>
     <nav>
       <section>
         <header>

@@ -3,16 +3,13 @@
 namespace App\Controller\Pages;
 
 use App\DAO\NoteDAO;
-use App\Http\Response;
-use App\Model\NoteModel;
-use \App\Utils\View;
+
 
 class Notes{
   public static function getNotes($request){
     $noteDAO = new NoteDAO();
-    $allNotes = $noteDAO->getAllNotes();
-    
-    return $allNotes;   
+
+    return $noteDAO->getAllNotes();
   }
 
   public static function insertNote($request){
@@ -28,8 +25,15 @@ class Notes{
     $jsonRequest = file_get_contents('php://input');
     $decodedData = json_decode($jsonRequest);
     $noteDAO = new NoteDAO();
-    $updateNote = $noteDAO->updateNote($decodedData->id,$decodedData->dropzoneName);
-    return $updateNote; 
+     
+    return $noteDAO->updateNote($decodedData->id,$decodedData->dropzoneName);
+  }
+
+  public static function deleteNote($request){
+    $jsonRequest = file_get_contents('php://input');
+    $decodedData = json_decode($jsonRequest);
+    $noteDAO = new NoteDAO();
+    return $noteDAO->deleteNote($decodedData->id);
   }
 
   // public static function setNotes($request){

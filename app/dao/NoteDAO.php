@@ -37,7 +37,6 @@ class NoteDAO {
     $obNote->status = $status;
     $query = $this->connection->getConnection()->prepare("INSERT INTO notes (title, description, status) VALUES (:title, :description, :status)");
     
-    
     return $query->execute(array(
       ':title' => "$obNote->title",
       ':description' => "$obNote->description",
@@ -50,6 +49,7 @@ class NoteDAO {
     $obNote->status = strtoupper($status);
     
     $query = $this->connection->getConnection()->prepare("UPDATE notes SET status=:status WHERE id=:id");
+    
     return $query->execute([
       'status'=>$status,
       'id'=>$id
@@ -59,6 +59,14 @@ class NoteDAO {
   public function getAllNotes(){
     $query = $this->connection->getConnection()->prepare("SELECT * FROM notes");
     $query->execute();
+    
     return $query->fetchAll($this->connection->getConnection()::FETCH_ASSOC);
+  }
+
+  public function deleteNote($id){
+    $query = $this->connection->getConnection()->prepare("DELETE FROM notes WHERE id = :id");
+    return $query->execute([
+      'id' => $id
+    ]);
   }
 }

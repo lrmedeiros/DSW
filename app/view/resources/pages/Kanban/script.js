@@ -9,13 +9,17 @@ function listItemCreate(data) {
 
   const h4 = document.createElement("h4");
   const title = document.createTextNode(data.title);
+
   h4.classList.add("title-card");
   h4.appendChild(title);
+  
   const divHeader = document.createElement("div");
   const buttonLixeira = document.createElement("button");
+  const buttonEdit = document.createElement("button");
+
   buttonLixeira.setAttribute("id", data.id);
   buttonLixeira.classList.add("btn");
-  buttonLixeira.classList.add("btn-primary");
+  buttonLixeira.classList.add("btn-danger");
   buttonLixeira.classList.add("delete");
   const buttonLixeiraText = document.createTextNode("Excluir");
   buttonLixeira.appendChild(buttonLixeiraText);
@@ -23,9 +27,11 @@ function listItemCreate(data) {
   divHeader.appendChild(h4);
   divHeader.appendChild(buttonLixeira);
 
+  
   const p = document.createElement("p");
   const description = document.createTextNode(data.description);
   const div = document.createElement("div");
+
   p.classList.add("description-card");
   p.appendChild(description);
   div.classList.add("description-content-card");
@@ -62,33 +68,6 @@ async function populateProjectManagement() {
     }
   });
 
-  // if (pendings) {
-  //   pendings.forEach((pending) => {
-  //     const li = listItemCreate(pending);
-  //     pendingUl.appendChild(li);
-  //   });
-  // }
-  // if (nows) {
-  //   nows.forEach((now) => {
-  //     const li = listItemCreate(now);
-  //     nowUl.appendChild(li);
-  // //   });
-  // }
-
-  // if (runnings) {
-  //   runnings.forEach((running) => {
-  //     const li = listItemCreate(running);
-  //     runningUl.appendChild(li);
-  //   });
-  // }
-
-  // if (concluded) {
-  //   concluded.forEach((conclud) => {
-  //     const li = listItemCreate(conclud);
-  //     concludedUl.appendChild(li);
-  //   });
-  // }
-
   updateCards();
 }
 
@@ -101,7 +80,6 @@ function updateCards() {
     card.addEventListener("dragstart", dragStart);
     card.addEventListener("dragend", dragEnd);
   });
-
   deleteCard();
 }
 
@@ -156,76 +134,10 @@ function drop() {
 
 async function updateBackendCards(card, dropzone) {
   const id = Number(card.id);
-  const [titleNode] = filterChildNodeWithOneClass(card, "title-card");
-  const title = titleNode.textContent;
-
-  const [descriptionContentNode] = filterChildNodeWithOneClass(
-    card,
-    "description-content-card"
-  );
-  const [descriptionNode] = filterChildNodeWithOneClass(
-    descriptionContentNode,
-    "description-card"
-  );
-
-  const description = descriptionNode.textContent;
+  
   const [, dropzoneName] = dropzone.classList;
 
-  const response = await fetch("http://localhost:80/organizei/notes");
-  const dataFetched = await response.json();
-
-  const objecttest = {
-    concluded: [],
-    nows: [],
-    runnings: [],
-    pendings: [],
-  };
-
-  dataFetched.forEach((data) => {
-    if (data.status === "CONCLUDED") {
-      objecttest.concluded.push(data);
-    }
-    if (data.status === "NOWS") {
-      objecttest.nows.push(data);
-    }
-    if (data.status === "PENDINGS") {
-      objecttest.pendings.push(data);
-    }
-    if (data.status === "RUNNINGS") {
-      objecttest.runnings.push(data);
-    }
-  });
-
-  const pendingsFiltered = objecttest.pendings.filter((pending) => {
-    return Number(pending.id) !== id;
-  });
-  const nowsFiltered = objecttest.nows.filter((now) => {
-    return Number(now.id) !== id;
-  });
-  const runningsFiltered = objecttest.runnings.filter((running) => {
-    return Number(running.id) !== id;
-  });
-  const concludedsFiltered = objecttest.concluded.filter((concluded) => {
-    return Number(concluded.id) !== id;
-  });
-
-  const dataWithOutDuplicates = {
-    pendings: pendingsFiltered,
-    nows: nowsFiltered,
-    runnings: runningsFiltered,
-    concluded: concludedsFiltered,
-  };
-
-  const dropzoneArea = [...objecttest[dropzoneName]];
-
-  let dropzoneAreaFiltered = [];
-
-  for (dropzone of dropzoneArea) {
-    if (Number(dropzone.id) !== id) {
-      dropzoneAreaFiltered.push(dropzone);
-    }
-  }
-
+  
   await fetch("http://localhost:80/organizei/notes", {
     method: "PUT",
     headers: {
@@ -237,6 +149,7 @@ async function updateBackendCards(card, dropzone) {
       id,
     }),
   });
+  window.location.reload(true)
 }
 
 function filterChildNodeWithOneClass(node, className) {
@@ -291,6 +204,7 @@ function createNewCard(section) {
   });
 }
 
+
 let buttonsDelete = document.querySelectorAll(".delete");
 
 function deleteCard() {
@@ -309,3 +223,5 @@ function deleteCard() {
     });
   });
 }
+
+

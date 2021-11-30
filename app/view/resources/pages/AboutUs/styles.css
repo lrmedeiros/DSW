@@ -53,8 +53,7 @@ header div button.btn-out {
 
 .dropzone {
   padding: 16px;
-  width: 300px;
-  min-height: 200px;
+  width: 100px;
   list-style: none;
   max-height: 600px;
   overflow-y: hidden;
@@ -62,17 +61,6 @@ header div button.btn-out {
 
 .dropzone:hover {
   overflow-y: auto;
-}
-
-.card {
-  background: var(--blue-800);
-  padding: 16px;
-  width: 100%;
-  min-width: 250px;
-  margin: 25px 0;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 18px;
 }
 
 .title-card {
@@ -163,13 +151,33 @@ header div button.btn-out {
   color: #0056b3;
 }
 
-.title-card {
-  overflow-x: hidden;
+.integrante {
+  min-height: 70vh !important;
+  border-right: 1px solid white;
+  color: white;
 }
 
-div.div-header {   
-  display: flex;   
-  align-items: center;   
-  justify-content: space-between;   
-  width: 100%; 
+.integrante h5 {
+  font-size: 24px;
+}
+
+.integrante ul {
+  list-style-type: none;
+}
+
+.card {
+  background: var(--blue-800);
+  padding: 16px;
+  margin: 25px 0;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+#page {
+  padding: 40px;
+}
+
+.nome {
+  font-size: 32px;
 }

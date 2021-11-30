@@ -12,7 +12,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
   <style>
-    <?php include './app/view/resources/styles/global.css'; ?><?php include './app/view/resources/pages/Home/styles.css'; ?>
+    <?php include './app/view/resources/styles/global.css'; ?>
+    <?php include './app/view/resources/pages/Home/styles.css'; ?>
   </style>
   <title>Organizei | Login</title>
 </head>
@@ -36,14 +37,11 @@
       </div>
       <div class="mb-3 row">
         <button type="button" class="btn btn-secondary">
-          <a id="register" href="organizei/register"> Criar Conta </a>
+          <a id="register" href="http://localhost/organizei/register"> Criar Conta </a>
         </button>
       </div>
     </form>
 
-    <div class="row align-items-center">
-      <a id="forgotPassword" href="../ForgotPassword/index.html">Esqueci minha senha</a>
-    </div>
   </main>
   <script src="./script.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
